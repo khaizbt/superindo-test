@@ -1,0 +1,792 @@
+{
+	"info": {
+		"_postman_id": "f278a778-07f7-4b15-9aed-012d2d0cd3a6",
+		"name": "Superindo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12945074"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"jwt_token\", jsonData.data.token);"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"user@superindo.co.id\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/user/login",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"user@superindo.co.id\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/login",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:16:43 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "331"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Login Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": {\n        \"id\": \"3494c954-b2f0-4ef2-9d04-05ebf7d83370\",\n        \"email\": \"user@superindo.co.id\",\n        \"username\": \"user_Superindo\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiMzQ5NGM5NTQtYjJmMC00ZWYyLTlkMDQtMDVlYmY3ZDgzMzcwIn0.NWD8FJTyMCO__XKvngzMggWknQsOAycUXcjI1P3nswU\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"khaizbt\",\r\n    \"email\" : \"khaizbt@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}v1/user/register",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaiz@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:02:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Account has been registered\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": true\n}"
+						},
+						{
+							"name": "Email has Been Registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaiz@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:03:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Create Account Failed #U002\",\n        \"code\": 400,\n        \"status\": \"fail\"\n    },\n    \"data\": \"Email has been registered\"\n}"
+						},
+						{
+							"name": "Username Has Been Taken",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaizbt@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:03:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Create Account Failed #U002\",\n        \"code\": 400,\n        \"status\": \"fail\"\n    },\n    \"data\": \"Username has been taken\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Balance",
+			"item": [
+				{
+					"name": "List Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}v1/product/list",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"list"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List product",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/list",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"list"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 15:52:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1919"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"ID\": \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\n            \"Name\": \"Hijab Muslimah\",\n            \"Stock\": 200,\n            \"SKU\": \"PROD-001\",\n            \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium arcu a ex rutrum malesuada. In sed urna sollicitudin, \\n\\t\\t\\tinterdum felis at, hendrerit erat. Fusce sodales vehicula turpis\\n\\t\\t\\t, ac placerat metus convallis ut. Aenean ut massa non tu\",\n            \"CreatedAt\": \"2024-11-29T22:46:14.712+07:00\",\n            \"UpdatedAt\": \"2024-11-29T22:46:14.712+07:00\"\n        },\n        {\n            \"ID\": \"259e7251-5a7c-4d41-b02b-84930c290caf\",\n            \"Name\": \"Hijab Muslimah\",\n            \"Stock\": 200,\n            \"SKU\": \"PROD-001\",\n            \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium arcu a ex rutrum malesuada. In sed urna sollicitudin, \\n\\t\\t\\tinterdum felis at, hendrerit erat. Fusce sodales vehicula turpis\\n\\t\\t\\t, ac placerat metus convallis ut. Aenean ut massa non tu\",\n            \"CreatedAt\": \"2024-11-29T22:52:06.397+07:00\",\n            \"UpdatedAt\": \"2024-11-29T22:52:06.397+07:00\"\n        },\n        {\n            \"ID\": \"6616a62e-c254-4418-b1ef-4f8266c4bf94\",\n            \"Name\": \"Gamis\",\n            \"Stock\": 201,\n            \"SKU\": \"PROD-002\",\n            \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium arcu a ex rutrum malesuada. In sed urna sollicitudin, \\n\\t\\t\\tinterdum felis at, hendrerit erat. Fusce sodales vehicula turpis\\n\\t\\t\\t, ac placerat metus convallis ut. Aenean ut massa non tu\",\n            \"CreatedAt\": \"2024-11-29T22:52:06.397+07:00\",\n            \"UpdatedAt\": \"2024-11-29T22:52:06.397+07:00\"\n        },\n        {\n            \"ID\": \"d8babc57-3c0f-41ac-8823-580364ec1e40\",\n            \"Name\": \"Gamis\",\n            \"Stock\": 201,\n            \"SKU\": \"PROD-002\",\n            \"Description\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam pretium arcu a ex rutrum malesuada. In sed urna sollicitudin, \\n\\t\\t\\tinterdum felis at, hendrerit erat. Fusce sodales vehicula turpis\\n\\t\\t\\t, ac placerat metus convallis ut. Aenean ut massa non tu\",\n            \"CreatedAt\": \"2024-11-29T22:46:14.712+07:00\",\n            \"UpdatedAt\": \"2024-11-29T22:46:14.712+07:00\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Add To Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\" : \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\r\n    \"amount\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/product/add-cart",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"add-cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Top Up",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\" : \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\r\n    \"amount\" : 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/product/add-cart",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"add-cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:45:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Add to cart Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Buy Now",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"product_id\" : \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\r\n    \"amount\" : 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/product/buy-now",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"buy-now"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Buy Now",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"product_id\" : \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\r\n    \"amount\" : 2\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/product/buy-now",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"buy-now"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:50:25 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "76"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Buy Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "List Cart",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}v1/product/get-cart",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"get-cart"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Balance",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/get-cart",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"get-cart"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:50:16 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "631"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"ID\": \"7c80d564-648a-4d15-9b91-666fa60bb4d3\",\n            \"UserID\": \"9b8f2156-d462-4b1c-88f8-f800d46b70dc\",\n            \"ProductID\": \"09317d72-85ed-41f3-9e54-9c0d5373b58b\",\n            \"Amount\": 4,\n            \"status\": \"ON_STOCK\",\n            \"CreatedAt\": \"2024-11-29T23:22:56.426+07:00\",\n            \"UpdatedAt\": \"2024-11-29T23:45:47.342+07:00\",\n            \"DeletedAt\": null\n        },\n        {\n            \"ID\": \"ca7989a3-dd4e-4870-99fa-4efe8e759c1e\",\n            \"UserID\": \"9b8f2156-d462-4b1c-88f8-f800d46b70dc\",\n            \"ProductID\": \"68c2416c-ddb1-4f82-8e55-f6d8cd25efeb\",\n            \"Amount\": 2,\n            \"status\": \"ON_STOCK\",\n            \"CreatedAt\": \"2024-11-29T23:50:08.561+07:00\",\n            \"UpdatedAt\": \"2024-11-29T23:50:08.561+07:00\",\n            \"DeletedAt\": null\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Checkout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"cart_id\" : \"7c80d564-648a-4d15-9b91-666fa60bb4d3\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/product/checkout",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"checkout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Checkout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"cart_id\" : \"7c80d564-648a-4d15-9b91-666fa60bb4d3\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/product/checkout",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"checkout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:50:57 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Order List",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}v1/product/list-order",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"list-order"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Order List",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/list-order",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"list-order"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 29 Nov 2024 16:51:11 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "341"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"id\": \"243777d8-d317-4e8c-b44c-2b2b1cdde920\",\n            \"product_name\": \"Hijab Muslimah\",\n            \"amount\": \"2\",\n            \"created_at\": \"2024-11-29T23:50:25.003+07:00\"\n        },\n        {\n            \"id\": \"5853d1af-66b6-40e4-aef3-6812f52dd67a\",\n            \"product_name\": \"Hijab Muslimah\",\n            \"amount\": \"4\",\n            \"created_at\": \"2024-11-29T23:50:57.106+07:00\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}
