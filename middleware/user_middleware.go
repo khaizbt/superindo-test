@@ -1,14 +1,16 @@
 package middleware
 
 import (
-	"net/http"
-	"strings"
-
+	ctx "context"
+	"errors"
 	"github.com/gin-gonic/gin"
 	"github.com/golang-jwt/jwt"
 	"github.com/khaizbt/superindo-test/config"
 	"github.com/khaizbt/superindo-test/helper"
 	"github.com/khaizbt/superindo-test/service"
+	"github.com/redis/go-redis/v9"
+	"net/http"
+	"strings"
 )
 
 func AuthMiddlewareUser(authService config.AuthService, service service.UserService) gin.HandlerFunc {
@@ -23,6 +25,7 @@ func AuthMiddlewareUser(authService config.AuthService, service service.UserServ
 		}
 
 		var tokenString string
+		var rdb = config.GetRedis()
 		arrayToken := strings.Split(authHeader, " ")
 
 		if len(arrayToken) == 2 {
@@ -47,6 +50,21 @@ func AuthMiddlewareUser(authService config.AuthService, service service.UserServ
 
 		userID := claim["user_id"].(string)
 
+		drd := rdb.Get(ctx.Background(), userID)
+
+		if err = drd.Err(); err != nil {
+			if !errors.Is(err, redis.Nil) {
+				response := helper.APIResponse("Unauthorized #TKN005", http.StatusUnauthorized, "error", nil)
+				context.AbortWithStatusJSON(http.StatusUnauthorized, response)
+				return
+			}
+		}
+
+		if drd.Val() != "" {
+			context.Set("loggedUser", drd.Val())
+			return
+		}
+
 		//Check Redis, jika user id ada maka ambil dari redis, misal tidak ada maka ambil dari db lalu set ke redis selama 2 jam
 		user, err := service.GetUserById(userID) //Jadikan Dari Redis
 
@@ -55,7 +73,7 @@ func AuthMiddlewareUser(authService config.AuthService, service service.UserServ
 			context.AbortWithStatusJSON(http.StatusUnauthorized, response)
 			return
 		}
-
+		//
 		context.Set("loggedUser", user)
 	}
 }

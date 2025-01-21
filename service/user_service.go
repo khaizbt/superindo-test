@@ -1,7 +1,11 @@
 package service
 
 import (
+	"context"
+	"encoding/json"
 	"errors"
+	"github.com/khaizbt/superindo-test/config"
+	"log"
 	"time"
 
 	"github.com/khaizbt/superindo-test/entity"
@@ -69,9 +73,20 @@ func (s *service) CreateUser(input entity.DataUserInput) (bool, error) {
 }
 
 func (s *service) GetUserById(id string) (model.User, error) {
+	var rdb = config.GetRedis()
 	user, err := s.repository.FindByID(id)
 
 	if err != nil {
+		return user, err
+	}
+
+	user.Password = ""
+	userJson, err := json.Marshal(user)
+
+	err = rdb.Set(context.Background(), user.ID, userJson, 2*time.Hour).Err()
+
+	if err != nil {
+		log.Println(err)
 		return user, err
 	}
 

@@ -1,7 +1,6 @@
 package controller
 
 import (
-	"fmt"
 	"github.com/gin-gonic/gin"
 	"github.com/khaizbt/superindo-test/entity"
 	"github.com/khaizbt/superindo-test/helper"
@@ -26,8 +25,6 @@ func (h *product_controller) ListProducts(c *gin.Context) {
 	productCategory := c.Query("product_category")
 
 	payload.Category = strings.Split(productCategory, ",")
-
-	fmt.Println(payload)
 
 	products, err := h.product_service.ListProduct(payload)
 

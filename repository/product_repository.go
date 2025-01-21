@@ -42,7 +42,6 @@ func (r *repository) GetProducts(where entity.ProductQuery) ([]model.Product, er
 		q.Where("products.name LIKE ?", fmt.Sprintf("%%%s%%", where.Name))
 	}
 
-	fmt.Println("panjang", len(where.Category))
 	if len(where.Category) > 0 {
 
 		q.Where("categories.id IN ?", where.Category)
