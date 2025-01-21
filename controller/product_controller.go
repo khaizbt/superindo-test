@@ -1,10 +1,13 @@
 package controller
 
 import (
+	"fmt"
 	"github.com/gin-gonic/gin"
+	"github.com/khaizbt/superindo-test/entity"
 	"github.com/khaizbt/superindo-test/helper"
 	"github.com/khaizbt/superindo-test/service"
 	"net/http"
+	"strings"
 )
 
 type product_controller struct {
@@ -17,7 +20,16 @@ func BankController(bankService service.ProductService, userService service.User
 }
 
 func (h *product_controller) ListProducts(c *gin.Context) {
-	products, err := h.product_service.ListProduct()
+	var payload entity.ProductQuery
+	payload.ID = c.Query("product_id")
+	payload.Name = c.Query("product_name")
+	productCategory := c.Query("product_category")
+
+	payload.Category = strings.Split(productCategory, ",")
+
+	fmt.Println(payload)
+
+	products, err := h.product_service.ListProduct(payload)
 
 	if err != nil {
 		responsError := helper.APIResponse("Product Not Found", http.StatusUnprocessableEntity, "fail", err)

@@ -17,4 +17,10 @@ type (
 		Amount      string    `json:"amount"`
 		CreatedAt   time.Time `json:"created_at"`
 	}
+
+	ProductQuery struct {
+		Name     string   `form:"name"`
+		ID       string   `form:"id"`
+		Category []string `form:"category"`
+	}
 )

@@ -46,7 +46,9 @@ func AuthMiddlewareUser(authService config.AuthService, service service.UserServ
 		}
 
 		userID := claim["user_id"].(string)
-		user, err := service.GetUserById(userID)
+
+		//Check Redis, jika user id ada maka ambil dari redis, misal tidak ada maka ambil dari db lalu set ke redis selama 2 jam
+		user, err := service.GetUserById(userID) //Jadikan Dari Redis
 
 		if err != nil {
 			response := helper.APIResponse("Unauthorized #TKN004", http.StatusUnauthorized, "error", nil)

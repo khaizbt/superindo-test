@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/khaizbt/superindo-test/entity"
 	"sync"
 
 	"github.com/khaizbt/superindo-test/model"
@@ -14,7 +15,7 @@ type (
 	}
 
 	ProductService interface {
-		ListProduct() ([]model.Product, error)
+		ListProduct(query entity.ProductQuery) ([]model.Product, error)
 	}
 )
 
@@ -22,8 +23,16 @@ func NewProductService(product_repository repository.ProductRepository, mu sync.
 	return &product_service{product_repository, mu}
 }
 
-func (s *product_service) ListProduct() ([]model.Product, error) {
-	product, err := s.repository.GetProducts()
+func (s *product_service) ListProduct(query entity.ProductQuery) ([]model.Product, error) {
+	if len(query.Category) == 1 {
+		for _, category := range query.Category {
+			if category == "" {
+				query.Category = nil
+				break
+			}
+		}
+	}
+	product, err := s.repository.GetProducts(query)
 
 	if err != nil {
 		return nil, err
