@@ -35,7 +35,7 @@ func (r *repository) GetProducts(where entity.ProductQuery) ([]model.ProductList
 
 	q := r.db.Table("products").Select("products.id", "products.name", "products.stock", "products.price", "products.sku", "products.created_at", "GROUP_CONCAT(categories.name) AS product_category").
 		Joins("JOIN product_categories ON products.id = product_categories.product_id").
-		Joins("JOIN  categories  ON product_categories.category_id = categories.id").Limit(10).Offset(0)
+		Joins("JOIN  categories  ON product_categories.category_id = categories.id")
 
 	if where.ID != "" {
 		q.Where("product_categories.product_id = ?", where.ID)
@@ -51,7 +51,15 @@ func (r *repository) GetProducts(where entity.ProductQuery) ([]model.ProductList
 
 	}
 
-	err := q.Group("products.id").Find(&results).Error
+	q.Group("products.id")
+
+	if where.OrderBy != "" {
+		q.Order(fmt.Sprintf("%s %s", where.OrderBy, where.OrderMethod))
+	} else {
+		q.Order(fmt.Sprintf("%s %s", "name", "asc"))
+	}
+
+	err := q.Limit(where.PerPage).Offset(where.Page).Find(&results).Error
 
 	return results, err
 }

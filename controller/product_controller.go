@@ -5,6 +5,7 @@ import (
 	"github.com/khaizbt/superindo-test/entity"
 	"github.com/khaizbt/superindo-test/helper"
 	"github.com/khaizbt/superindo-test/service"
+	"github.com/spf13/cast"
 	"net/http"
 	"strings"
 )
@@ -23,6 +24,14 @@ func (h *product_controller) ListProducts(c *gin.Context) {
 	payload.ID = c.Query("product_id")
 	payload.Name = c.Query("product_name")
 	productCategory := c.Query("product_category")
+	payload.OrderBy = c.Query("order_by")
+	payload.OrderMethod = c.Query("order_method")
+
+	perPage := c.Query("per_page")
+	page := c.Query("page")
+
+	payload.PerPage = cast.ToInt(perPage)
+	payload.Page = cast.ToInt(page)
 
 	payload.Category = strings.Split(productCategory, ",")
 

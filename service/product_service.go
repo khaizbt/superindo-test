@@ -34,6 +34,12 @@ func (s *product_service) ListProduct(query entity.ProductQuery) ([]model.Produc
 			}
 		}
 	}
+
+	if query.PerPage == 0 {
+		query.PerPage = 10
+	}
+
+	query.Page = (query.Page - 1) * query.PerPage
 	product, err := s.repository.GetProducts(query)
 
 	if err != nil {

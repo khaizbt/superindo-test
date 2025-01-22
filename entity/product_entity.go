@@ -19,9 +19,13 @@ type (
 	}
 
 	ProductQuery struct {
-		Name     string   `form:"name"`
-		ID       string   `form:"id"`
-		Category []string `form:"category"`
+		Name        string   `form:"name"`
+		ID          string   `form:"id"`
+		Category    []string `form:"category"`
+		OrderBy     string   `form:"order_by"`
+		OrderMethod string   `form:"order_method"`
+		PerPage     int      `form:"per_page"`
+		Page        int      `form:"page"`
 	}
 
 	ProductCreateInput struct {
