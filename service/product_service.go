@@ -1,6 +1,7 @@
 package service
 
 import (
+	"github.com/google/uuid"
 	"github.com/khaizbt/superindo-test/entity"
 	"sync"
 
@@ -15,7 +16,8 @@ type (
 	}
 
 	ProductService interface {
-		ListProduct(query entity.ProductQuery) ([]model.Product, error)
+		CreateProduct(query entity.ProductCreateInput) error
+		ListProduct(query entity.ProductQuery) ([]model.ProductList, error)
 	}
 )
 
@@ -23,7 +25,7 @@ func NewProductService(product_repository repository.ProductRepository, mu sync.
 	return &product_service{product_repository, mu}
 }
 
-func (s *product_service) ListProduct(query entity.ProductQuery) ([]model.Product, error) {
+func (s *product_service) ListProduct(query entity.ProductQuery) ([]model.ProductList, error) {
 	if len(query.Category) == 1 {
 		for _, category := range query.Category {
 			if category == "" {
@@ -39,4 +41,42 @@ func (s *product_service) ListProduct(query entity.ProductQuery) ([]model.Produc
 	}
 
 	return product, nil
+}
+
+func (s *product_service) CreateProduct(query entity.ProductCreateInput) error {
+	productId := uuid.NewString()
+
+	errCreateProduct := s.repository.Create(model.Product{
+		ID:          productId,
+		Name:        query.Name,
+		Stock:       query.Stock,
+		SKU:         query.SKU,
+		Description: &query.Description,
+	})
+
+	if errCreateProduct != nil {
+		return errCreateProduct
+	}
+
+	//get product category
+	categories, err := s.repository.GetProductCategory(query.Category)
+
+	if err != nil {
+		return err
+	}
+
+	for _, category := range categories {
+		errCreateProductCategory := s.repository.CreateProductCategory(model.ProductCategory{
+			ID:         uuid.NewString(),
+			ProductID:  productId,
+			CategoryID: category.ID,
+		})
+
+		if errCreateProductCategory != nil {
+			return errCreateProductCategory
+		}
+	}
+
+	return nil
+
 }

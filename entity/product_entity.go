@@ -23,4 +23,12 @@ type (
 		ID       string   `form:"id"`
 		Category []string `form:"category"`
 	}
+
+	ProductCreateInput struct {
+		Name        string   `json:"name"`
+		Description string   `json:"description"`
+		Stock       int      `json:"stock"`
+		Category    []string `json:"category"`
+		SKU         string   `json:"sku"`
+	}
 )

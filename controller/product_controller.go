@@ -37,3 +37,27 @@ func (h *product_controller) ListProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, response)
 
 }
+
+func (h *product_controller) CreeateProduct(c *gin.Context) {
+	var payload entity.ProductCreateInput
+
+	err := c.ShouldBindJSON(&payload)
+
+	if err != nil {
+		responsError := helper.APIResponse("Create product failed", http.StatusUnprocessableEntity, "fail", err)
+		c.JSON(http.StatusUnprocessableEntity, responsError)
+		return
+	}
+
+	errCreate := h.product_service.CreateProduct(payload)
+
+	if errCreate != nil {
+		responsError := helper.APIResponse("Create product failed", http.StatusBadRequest, "fail", err)
+		c.JSON(http.StatusUnprocessableEntity, responsError)
+		return
+	}
+
+	response := helper.APIResponse("Product has been created", http.StatusOK, "success", nil)
+	c.JSON(http.StatusOK, response)
+
+}
