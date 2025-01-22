@@ -109,17 +109,17 @@ func (s *service) Login(input entity.LoginInput) (model.User, error) {
 	user, err := s.repository.FindByEmail(email)
 
 	if err != nil {
-		return user, err
+		return user, errors.New("user or password incorrect")
 	}
 
 	if user.ID == "" {
-		return user, errors.New("User Not Found")
+		return user, errors.New("email or password incorrect")
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(password))
 
 	if err != nil {
-		return user, nil
+		return user, errors.New("email or password incorrect")
 	}
 
 	return user, nil

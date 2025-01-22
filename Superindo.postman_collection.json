@@ -1,0 +1,692 @@
+{
+	"info": {
+		"_postman_id": "7d13f63e-5e9c-45c8-82fb-c2413f0d3ae8",
+		"name": "Superindo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "12945074"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);\r",
+									"pm.environment.set(\"jwt_token\", jsonData.data.token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\" : \"user@superindo.com\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/user/login",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"user",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"email\" : \"user@superindo.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/login",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Jan 2025 16:02:09 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "335"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Login Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": {\n        \"id\": \"e035c90d-37f2-475b-aef8-425ef8e8d1dc\",\n        \"email\": \"user@superindo.com\",\n        \"username\": \"user_superindo\",\n        \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiZTAzNWM5MGQtMzdmMi00NzViLWFlZjgtNDI1ZWY4ZThkMWRjIn0.Mo10QDusGiuc3nzOSErWyxtbXnTpLD_Jircwj7PJtzg\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Register User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\" : \"khaizbt\",\r\n    \"email\" : \"khaizbt@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}v1/user/register",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaiz@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:02:47 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "92"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Account has been registered\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": true\n}"
+						},
+						{
+							"name": "Email has Been Registered",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaiz@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:03:15 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "112"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Create Account Failed #U002\",\n        \"code\": 400,\n        \"status\": \"fail\"\n    },\n    \"data\": \"Email has been registered\"\n}"
+						},
+						{
+							"name": "Username Has Been Taken",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"username\" : \"khaiz\",\r\n    \"email\" : \"khaizbt@gmail.com\",\r\n    \"password\" : \"password123\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/user/register",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 30 Jan 2022 10:03:41 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "110"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Create Account Failed #U002\",\n        \"code\": 400,\n        \"status\": \"fail\"\n    },\n    \"data\": \"Username has been taken\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Product",
+			"item": [
+				{
+					"name": "Get category",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Ambil response JSON",
+									"const jsonData = pm.response.json();",
+									"",
+									"// Pastikan data ada dan merupakan array",
+									"if (jsonData.data && Array.isArray(jsonData.data)) {",
+									"    // Ambil semua ID dari array data",
+									"    const allIDs = jsonData.data.map(item => item.ID);",
+									"",
+									"    // Simpan hasil ke dalam variabel Postman",
+									"    pm.environment.set(\"allIDs\", JSON.stringify(allIDs));",
+									"",
+									"    // Log hasil ke console untuk verifikasi",
+									"    pm.environment.set(\"category_id\", allIDs);",
+									"    console.log(allIDs);",
+									"} else {",
+									"    console.log(\"Data tidak ditemukan atau bukan array.\");",
+									"}",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}v1/product/category",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"category"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Category",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/category",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"category"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Jan 2025 15:58:39 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "851"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"success get category\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"ID\": \"5edbf5f9-15e6-4202-866d-656b515d5419\",\n            \"Name\": \"Snack\",\n            \"Description\": \"Lorem ipsum dolor sit amet\",\n            \"CreatedAt\": \"2025-01-22T15:17:13.94+07:00\",\n            \"UpdatedAt\": \"2025-01-22T15:17:13.94+07:00\"\n        },\n        {\n            \"ID\": \"5edbf5f9-15e6-4202-866d-656b515d5420\",\n            \"Name\": \"Protein\",\n            \"Description\": \"Lorem ipsum dolor sit amet\",\n            \"CreatedAt\": \"2025-01-22T15:17:13.942+07:00\",\n            \"UpdatedAt\": \"2025-01-22T15:17:13.942+07:00\"\n        },\n        {\n            \"ID\": \"b0ea46a9-f142-4d99-a5eb-926061bfe145\",\n            \"Name\": \"Buah\",\n            \"Description\": \"Lorem ipsum dolor sit amet\",\n            \"CreatedAt\": \"2025-01-22T15:17:13.938+07:00\",\n            \"UpdatedAt\": \"2025-01-22T15:17:13.938+07:00\"\n        },\n        {\n            \"ID\": \"f522ae24-cc07-483b-97bc-7895468f6146\",\n            \"Name\": \"Sayuran\",\n            \"Description\": \"Lorem ipsum dolor sit amet\",\n            \"CreatedAt\": \"2025-01-22T15:17:13.936+07:00\",\n            \"UpdatedAt\": \"2025-01-22T15:17:13.936+07:00\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "List Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url_api}}v1/product/list?order_by=price&order_method=ASC&page=1&per_page=20&product_category=5edbf5f9-15e6-4202-866d-656b515d5419",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"list"
+							],
+							"query": [
+								{
+									"key": "order_by",
+									"value": "price"
+								},
+								{
+									"key": "order_method",
+									"value": "ASC"
+								},
+								{
+									"key": "product_name",
+									"value": "kangkung",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1"
+								},
+								{
+									"key": "per_page",
+									"value": "20"
+								},
+								{
+									"key": "product_id",
+									"value": "9fd18521-6358-44de-a426-901572dc9403",
+									"disabled": true
+								},
+								{
+									"key": "product_category",
+									"value": "5edbf5f9-15e6-4202-866d-656b515d5419"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "List Product With Filter",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/list?order_by=price&order_method=desc&page=1&per_page=2&product_id=9fd18521-6358-44de-a426-901572dc9403",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"list"
+									],
+									"query": [
+										{
+											"key": "order_by",
+											"value": "price"
+										},
+										{
+											"key": "order_method",
+											"value": "desc"
+										},
+										{
+											"key": "product_name",
+											"value": "kangkung",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "2"
+										},
+										{
+											"key": "product_id",
+											"value": "9fd18521-6358-44de-a426-901572dc9403"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Jan 2025 16:00:44 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "301"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"id\": \"9fd18521-6358-44de-a426-901572dc9403\",\n            \"name\": \"Kangkung Segar Dieng\",\n            \"stock\": 201,\n            \"sku\": \"S001\",\n            \"product_category\": \"Sayuran,Protein\",\n            \"price\": 10000,\n            \"created_at\": \"2025-01-22T15:17:13.91+07:00\",\n            \"updated_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						},
+						{
+							"name": "List Product With category Snack",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url_api}}v1/product/list?order_by=price&order_method=desc&page=1&per_page=20&product_category=5edbf5f9-15e6-4202-866d-656b515d5419",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"list"
+									],
+									"query": [
+										{
+											"key": "order_by",
+											"value": "price"
+										},
+										{
+											"key": "order_method",
+											"value": "desc"
+										},
+										{
+											"key": "product_name",
+											"value": "kangkung",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "per_page",
+											"value": "20"
+										},
+										{
+											"key": "product_id",
+											"value": "9fd18521-6358-44de-a426-901572dc9403",
+											"disabled": true
+										},
+										{
+											"key": "product_category",
+											"value": "5edbf5f9-15e6-4202-866d-656b515d5419"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Jan 2025 16:07:32 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "486"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Success\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": [\n        {\n            \"id\": \"3bca80ba-40fa-4812-bc87-1ac4854e8bf5\",\n            \"name\": \"Bayam\",\n            \"stock\": 20,\n            \"sku\": \"SA002\",\n            \"product_category\": \"Snack\",\n            \"price\": 20000,\n            \"created_at\": \"2025-01-22T23:04:50.796+07:00\",\n            \"updated_at\": \"0001-01-01T00:00:00Z\"\n        },\n        {\n            \"id\": \"39789466-7b54-4c3a-8b62-7be6a9e91fc0\",\n            \"name\": \"Ubi rebus\",\n            \"stock\": 20,\n            \"sku\": \"SA002\",\n            \"product_category\": \"Snack\",\n            \"price\": 20,\n            \"created_at\": \"2025-01-22T21:09:30.693+07:00\",\n            \"updated_at\": \"0001-01-01T00:00:00Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Bayam\",\n    \"description\" : \"Bayam segar asli garut\",\n    \"sku\" : \"SA002\",\n    \"stock\": 20,\n    \"category\" : [\"b0ea46a9-f142-4d99-a5eb-926061bfe145\",\"5edbf5f9-15e6-4202-866d-656b515d5419\"],\n    \"price\" : 20000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url_api}}v1/product/create",
+							"host": [
+								"{{url_api}}v1"
+							],
+							"path": [
+								"product",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Product",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n   \n    \"description\" : \"Bayam segar asli garut\",\n    \"sku\" : \"SA002-771\",\n    \"stock\": 20,\n    \"category\" : [\"b0ea46a9-f142-4d99-a5eb-926061bfe145\",\"5edbf5f9-15e6-4202-866d-656b515d5420\"],\n    \"price\" : 20,\n    \"name\" : \"Ubi rebus\"\n\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url_api}}v1/product/create",
+									"host": [
+										"{{url_api}}v1"
+									],
+									"path": [
+										"product",
+										"create"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 22 Jan 2025 16:02:26 GMT"
+								},
+								{
+									"key": "Content-Length",
+									"value": "89"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"meta\": {\n        \"message\": \"Product has been created\",\n        \"code\": 200,\n        \"status\": \"success\"\n    },\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

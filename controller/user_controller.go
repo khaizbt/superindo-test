@@ -1,15 +1,16 @@
 package controller
 
 import (
-	"net/http"
-
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
+	validation "github.com/go-ozzo/ozzo-validation"
+	"github.com/go-ozzo/ozzo-validation/is"
 	"github.com/khaizbt/superindo-test/config"
 	"github.com/khaizbt/superindo-test/entity"
 	"github.com/khaizbt/superindo-test/helper"
 	"github.com/khaizbt/superindo-test/model"
 	"github.com/khaizbt/superindo-test/service"
+	"net/http"
 )
 
 type (
@@ -51,6 +52,18 @@ func (h *userController) CreateUser(c *gin.Context) {
 		return
 	}
 
+	errValidation := validation.ValidateStruct(&input,
+		validation.Field(&input.Username, validation.Required, is.Alphanumeric),
+		validation.Field(&input.Email, validation.Required, is.Email),
+		validation.Field(&input.Password, validation.Required, validation.NilOrNotEmpty),
+	)
+
+	if errValidation != nil {
+		responsError := helper.APIResponse("Create Account Failed #U001-1", http.StatusUnprocessableEntity, "fail", errValidation)
+		c.JSON(http.StatusUnprocessableEntity, responsError)
+		return
+	}
+
 	createUser, err := h.userService.CreateUser(input)
 
 	if err != nil {
@@ -70,6 +83,17 @@ func (h *userController) Login(c *gin.Context) {
 	if err != nil {
 		responseError := helper.APIResponse("Login Failed #LOG001", http.StatusUnprocessableEntity, "fail", err.Error())
 		c.JSON(http.StatusUnprocessableEntity, responseError)
+		return
+	}
+
+	errValidation := validation.ValidateStruct(&input,
+		validation.Field(&input.Email, validation.Required, is.Email),
+		validation.Field(&input.Password, validation.Required, validation.NilOrNotEmpty),
+	)
+
+	if errValidation != nil {
+		responsError := helper.APIResponse("Login Failed #LOG002-1", http.StatusUnprocessableEntity, "fail", errValidation)
+		c.JSON(http.StatusUnprocessableEntity, responsError)
 		return
 	}
 

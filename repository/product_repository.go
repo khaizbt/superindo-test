@@ -14,6 +14,7 @@ type ProductRepository interface {
 	Create(product model.Product) error
 	CreateProductCategory(productCategory model.ProductCategory) error
 	GetProductCategory(category []string) ([]model.Category, error)
+	GetCategory() ([]model.Category, error)
 }
 
 func NewBankRepository(db *gorm.DB) *repository {
@@ -80,6 +81,14 @@ func (r *repository) GetProductCategory(category []string) ([]model.Category, er
 	var results []model.Category
 
 	err := r.db.Where("id IN ?", category).Find(&results).Error
+
+	return results, err
+}
+
+func (r *repository) GetCategory() ([]model.Category, error) {
+	var results []model.Category
+
+	err := r.db.Find(&results).Error
 
 	return results, err
 }

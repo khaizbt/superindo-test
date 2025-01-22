@@ -1,6 +1,12 @@
 package helper
 
-import "crypto/rand"
+import (
+	"crypto/rand"
+	"errors"
+	"fmt"
+	"github.com/khaizbt/superindo-test/config"
+	"github.com/khaizbt/superindo-test/model"
+)
 
 func GenerateNumber(length int) (string, error) {
 	var chars = "0123456789"
@@ -16,4 +22,19 @@ func GenerateNumber(length int) (string, error) {
 	}
 
 	return string(buffer), nil
+}
+
+func GetCategory(query []string) error {
+	db := config.GetDB()
+
+	for _, category := range query {
+		err := db.Where("id = ?", category).First(&model.Category{}).Error
+
+		if err != nil {
+			return errors.New(fmt.Sprint("category does not exist: ", category))
+		}
+	}
+
+	return nil
+
 }
