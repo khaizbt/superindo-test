@@ -1,7 +1,7 @@
 # Superindo Pre Test Backend Engineer
 Here are the results of the Superindo Backend Engineer pre test project
 
-## Overview
+## Technology Used
 ![Project Structure](https://raw.githubusercontent.com/khaizbt/superindo-test/refs/heads/develop/helper/Screenshot%202025-01-22%20at%2019.20.32.png)
 1. This Repo using [Gin-Gonic](https://github.com/gin-gonic/gin)
 2. Gorm for query
@@ -17,14 +17,11 @@ To Run this Repo, you need to install [Go](https://golang.org/dl/)
 1. Clone this repo using https ```git clone https://github.com/khaizbt/superindo-test.git```
 2. in your bash, run ```cd superindo-test```
 3. You can use MySql, for configuration the database is contained in the file [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env) and Docs of database in [here](https://gorm.io/docs/connecting_to_the_database.html)
-4. You can use MySql for save temporary data. for configuration is contained in the file  [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env)
+4. You can use Redis for save temporary data. for configuration is contained in the file  [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env)
 5. If you have configured the Database and Secret Key on [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env) you can immediately run  ```go run main.go ``` use bash in Project Directory
 6. If it's run successfully, you can import postman.json on your postman in the file [postman_collection](https://github.com/khaizbt/superindo-test/blob/main/Superindo.postman_collection.json) and  [postman_environtment](https://github.com/khaizbt/superindo-test/blob/main/superindo.postman_environment.json ) or via the link [here](https://documenter.getpostman.com/view/12945074/2sAYQdjVbW)
 ## Technologies Used
 
-- **Go**: The primary programming language for application development.
-- **Goroutines**: To handle concurrent operations.
-- **Mutex**: To avoid race conditions when accessing shared data.
 
 ## Code Explanation:
 - ~/controller/* is used for code related to context, middleware, validation, etc
