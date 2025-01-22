@@ -12,6 +12,7 @@ func RouteBank(route *gin.Engine, service service.ProductService, user_service s
 	api := route.Group("/api/v1/product")
 
 	api.GET("/list", productController.ListProducts)
+	api.GET("/category", productController.GetCategory)
 	api.POST("/create", middleware.AuthMiddlewareUser(authService, user_service), productController.CreeateProduct)
 
 }

@@ -1,6 +1,8 @@
 package entity
 
-import "time"
+import (
+	"time"
+)
 
 type (
 	AddToCartInput struct {
@@ -32,6 +34,7 @@ type (
 		Name        string   `json:"name"`
 		Description string   `json:"description"`
 		Stock       int      `json:"stock"`
+		Price       int      `json:"price"`
 		Category    []string `json:"category"`
 		SKU         string   `json:"sku"`
 	}

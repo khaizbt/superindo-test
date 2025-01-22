@@ -3,6 +3,7 @@ package service
 import (
 	"github.com/google/uuid"
 	"github.com/khaizbt/superindo-test/entity"
+	"github.com/spf13/cast"
 	"sync"
 
 	"github.com/khaizbt/superindo-test/model"
@@ -18,6 +19,7 @@ type (
 	ProductService interface {
 		CreateProduct(query entity.ProductCreateInput) error
 		ListProduct(query entity.ProductQuery) ([]model.ProductList, error)
+		GetCategory() ([]model.Category, error)
 	}
 )
 
@@ -55,9 +57,10 @@ func (s *product_service) CreateProduct(query entity.ProductCreateInput) error {
 	errCreateProduct := s.repository.Create(model.Product{
 		ID:          productId,
 		Name:        query.Name,
-		Stock:       query.Stock,
+		Stock:       cast.ToInt(query.Stock),
 		SKU:         query.SKU,
 		Description: &query.Description,
+		Price:       cast.ToInt(query.Price),
 	})
 
 	if errCreateProduct != nil {
@@ -85,4 +88,14 @@ func (s *product_service) CreateProduct(query entity.ProductCreateInput) error {
 
 	return nil
 
+}
+
+func (s *product_service) GetCategory() ([]model.Category, error) {
+	result, err := s.repository.GetCategory()
+
+	if err != nil {
+		return nil, err
+	}
+
+	return result, nil
 }
