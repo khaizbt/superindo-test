@@ -21,7 +21,7 @@ To Run this Repo, you need to install [Go](https://golang.org/dl/)
 5. You can use Redis for save temporary data. for configuration is contained in the file  [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env)
 6. If you have configured the Database and Secret Key on [.env](https://github.com/khaizbt/superindo-test/-/blob/master/.env) you can immediately run  ```go run main.go ``` use bash in Project Directory
 7. If it's run successfully, you can import postman.json on your postman in the file [postman_collection](https://github.com/khaizbt/superindo-test/blob/main/Superindo.postman_collection.json) and  [postman_environtment](https://github.com/khaizbt/superindo-test/blob/main/superindo.postman_environment.json ) or via the link [here](https://documenter.getpostman.com/view/12945074/2sAYQdjVbW)
-## Technologies Used
+
 
 
 ## Code Explanation:
